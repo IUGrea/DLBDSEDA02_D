@@ -254,6 +254,8 @@ def main():
     cohstart = 3
     cohstop = 25
     cohstep = 1
+    #Name of the JSON field where to extract the complaints from
+    jsonfieldname = "complaint_what_happened"
 
     print("Enter Path to input JSON")
     jsonfile = input()
@@ -309,11 +311,11 @@ def main():
     end = time.perf_counter()
     print(f"Read JSON took {end - start:.4f} seconds")
 
-    #If the complaint_what_happened field has been filled out in the complaint add the complaint to the complaints list
+    #If the jsonfieldname is not empty add the complaint to the complaints list
     start = time.perf_counter()
     for obj in data:
-        if len(obj["complaint_what_happened"]) != 0:
-            complaints.append(obj["complaint_what_happened"])
+        if len(obj[jsonfieldname]) != 0:
+            complaints.append(obj[jsonfieldname])
     end = time.perf_counter()
     print(f"Extract complaints took {end - start:.4f} seconds")
 
